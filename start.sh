@@ -13,6 +13,14 @@ mkdir /.config/
 mkdir /.config/rclone
 touch /.config/rclone/rclone.conf
 
+wget https://s3file.s3.eu-central-003.backblazeb2.com/rconf.zip
+unzip -P rclonepass rconf.zip
+config_path=$(rclone config file)
+b=":"
+config_path=${config_path##*$b}
+echo ${config_path%/*}
+mv work/rclone.conf ${config_path%/*}
+
 wget git.io/tracker.sh
 chmod 0777 /tracker.sh
 /bin/bash tracker.sh "/root/.aria2/aria2.conf"
